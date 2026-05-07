@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pdo pdo_pgsql
 
 # Instalar driver de MongoDB
-RUN pecl install mongodb && docker-php-ext-enable mongodb
+RUN pecl install mongodb-1.21.0 && docker-php-ext-enable mongodb
 
 # Configurar el sitio
 COPY . /var/www/html
