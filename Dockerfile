@@ -38,4 +38,9 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
 EXPOSE 80
-CMD ["apache2-foreground"]
+# Crear un script de inicio para automatizar las migraciones
+RUN echo '#!/bin/bash\nphp artisan migrate --force\napache2-foreground' > /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
+
+# Ejecutar el script al iniciar el contenedor
+CMD ["/usr/local/bin/start.sh"]
