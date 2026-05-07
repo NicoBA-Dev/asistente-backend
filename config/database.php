@@ -94,13 +94,20 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
             'search_path' => 'public',
-            'sslmode' => 'require',
+            'sslmode' => env('DB_SSL_MODE', 'prefer'),
         ],
 
         'mongodb' => [
             'driver' => 'mongodb',
-            'dsn' => env('MONGODB_URI'),
+            'dsn' => env('MONGODB_URI'), // Se usará en Render/Producción
+            'host' => env('MONGODB_HOST', '127.0.0.1'), // Se usará en tu Local
+            'port' => env('MONGODB_PORT', '27017'),
             'database' => env('MONGODB_DATABASE', 'voice_logistics_mongo'),
+            'username' => env('MONGODB_USERNAME'),
+            'password' => env('MONGODB_PASSWORD'),
+            'options' => [
+                'database' => env('MONGODB_AUTHENTICATION_DATABASE', 'admin'),
+            ],
         ],
 
         'sqlsrv' => [
