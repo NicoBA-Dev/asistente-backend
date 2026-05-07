@@ -94,19 +94,13 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
             'search_path' => 'public',
-            'sslmode' => 'prefer',
+            'sslmode' => 'require',
         ],
-        
+
         'mongodb' => [
             'driver' => 'mongodb',
-            'host' => env('MONGODB_HOST', '127.0.0.1'),
-            'port' => env('MONGODB_PORT', 27017),
+            'dsn' => env('MONGODB_URI'),
             'database' => env('MONGODB_DATABASE', 'voice_logistics_mongo'),
-            'username' => env('MONGODB_USERNAME', ''),
-            'password' => env('MONGODB_PASSWORD', ''),
-            'options' => [
-                'database' => env('MONGODB_AUTHENTICATION_DATABASE', 'admin'),
-            ],
         ],
 
         'sqlsrv' => [
