@@ -39,7 +39,7 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-di
 
 EXPOSE 80
 # Crear un script de inicio para automatizar las migraciones
-RUN echo '#!/bin/bash\nphp artisan migrate --force\napache2-foreground' > /usr/local/bin/start.sh
+RUN printf "#!/bin/bash\nphp artisan migrate --force\napache2-foreground" > /usr/local/bin/start.sh
 RUN chmod +x /usr/local/bin/start.sh
 
 # Ejecutar el script al iniciar el contenedor
